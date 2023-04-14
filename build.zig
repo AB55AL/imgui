@@ -4,11 +4,13 @@ pub const Backend = enum {
     no_backend,
     glfw_wgpu,
     win32_dx12,
+    glfw_opengl3,
 };
 
 pub const Options = struct {
     backend: Backend,
     shared: bool = false,
+    use_freetype: bool = false,
 };
 
 pub const Package = struct {
@@ -19,7 +21,7 @@ pub const Package = struct {
 
     pub fn link(pkg: Package, exe: *std.Build.CompileStep) void {
         exe.linkLibrary(pkg.zgui_c_cpp);
-        exe.addModule("zgui", pkg.zgui);
+        exe.addModule("imgui", pkg.zgui);
     }
 };
 
@@ -85,6 +87,13 @@ pub fn package(
     zgui_c_cpp.addCSourceFile(thisDir() ++ "/libs/imgui/implot.cpp", cflags);
     zgui_c_cpp.addCSourceFile(thisDir() ++ "/libs/imgui/implot_items.cpp", cflags);
 
+    if (args.options.use_freetype) {
+        zgui_c_cpp.linkSystemLibrary("freetype2");
+        zgui_c_cpp.defineCMacro("IMGUI_ENABLE_FREETYPE", null);
+
+        zgui_c_cpp.addCSourceFile(thisDir() ++ "/libs/imgui/misc/freetype/imgui_freetype.cpp", cflags);
+    }
+
     switch (args.options.backend) {
         .glfw_wgpu => {
             zgui_c_cpp.addIncludePath(thisDir() ++ "/../zglfw/libs/glfw/include");
@@ -97,6 +106,13 @@ pub fn package(
             zgui_c_cpp.addCSourceFile(thisDir() ++ "/libs/imgui/backends/imgui_impl_dx12.cpp", cflags);
             zgui_c_cpp.linkSystemLibraryName("d3dcompiler_47");
             zgui_c_cpp.linkSystemLibraryName("dwmapi");
+        },
+        .glfw_opengl3 => {
+            zgui_c_cpp.linkSystemLibrary("opengl");
+            zgui_c_cpp.addCSourceFiles(&.{
+                thisDir() ++ "/libs/imgui/backends/imgui_impl_glfw.cpp",
+                thisDir() ++ "/libs/imgui/backends/imgui_impl_opengl3.cpp",
+            }, cflags);
         },
         .no_backend => {},
     }
