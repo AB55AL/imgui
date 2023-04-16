@@ -1,5 +1,6 @@
 #include "./imgui/imgui.h"
 #include "./imgui/implot.h"
+#include "./imgui/imgui_internal.h"
 
 #ifndef ZGUI_API
 #define ZGUI_API
@@ -1172,6 +1173,10 @@ ZGUI_API void zguiSetClipboardText(const char* text) {
 
 ZGUI_API const char* zguiGetClipboardText(void) {
     return ImGui::GetClipboardText();
+}
+
+ZGUI_API float zguiKeyDownDuration(ImGuiKey key) {
+  return ImGui::GetKeyData(key)->DownDuration;
 }
 
 ZGUI_API bool zguiIsKeyDown(ImGuiKey key) {

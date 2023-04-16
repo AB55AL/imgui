@@ -2149,6 +2149,9 @@ pub const InputTextCallbackData = extern struct {
 
 pub const InputTextCallback = *const fn (data: *InputTextCallbackData) i32;
 
+pub const keyDownDuration = zguiKeyDownDuration;
+extern fn zguiKeyDownDuration(Key) f32;
+
 pub const isKeyDown = zguiIsKeyDown;
 extern fn zguiIsKeyDown(Key) bool;
 //--------------------------------------------------------------------------------------------------
