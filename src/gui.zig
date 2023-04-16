@@ -2158,7 +2158,7 @@ extern fn zguiControlDown() bool;
 pub const shiftDown = zguiControlDown;
 extern fn zguiShiftDown() bool;
 
-pub const altlDown = zguiControlDown;
+pub const altDown = zguiControlDown;
 extern fn zguiAltDown() bool;
 
 pub const isKeyDown = zguiIsKeyDown;
