@@ -2163,6 +2163,9 @@ extern fn zguiAltDown() bool;
 
 pub const isKeyDown = zguiIsKeyDown;
 extern fn zguiIsKeyDown(Key) bool;
+
+pub const isKeyPressed = zguiIsKeyPressed;
+extern fn zguiIsKeyPressed(Key, bool) bool;
 //--------------------------------------------------------------------------------------------------
 const InputText = struct {
     buf: []u8,

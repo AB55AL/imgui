@@ -1196,6 +1196,10 @@ ZGUI_API bool zguiIsKeyDown(ImGuiKey key) {
   return ImGui::IsKeyDown(key);
 }
 
+ZGUI_API bool zguiIsKeyPressed(ImGuiKey key, bool repeat) {
+  return ImGui::IsKeyPressed(key, repeat);
+}
+
 ZGUI_API ImWchar* zguiIoInputQueueCharacters(void) {
   return ImGui::GetIO().InputQueueCharacters.Data;
 }
