@@ -143,6 +143,11 @@ pub const FontConfig = extern struct {
     extern fn zguiFontConfig_Init() FontConfig;
 };
 
+pub const ImVec2 = extern struct {
+    x: f32,
+    y: f32,
+};
+
 pub const io = struct {
     pub fn addFontFromFile(filename: [:0]const u8, size_pixels: f32) Font {
         return zguiIoAddFontFromFile(filename, size_pixels);
@@ -204,6 +209,9 @@ pub const io = struct {
     pub const getFontsTexId = zguiIoGetFontsTexId;
     extern fn zguiIoGetFontsTexId() TextureIdent;
 
+    pub const getMousePos = zguiIoGetMousePos;
+    extern fn zguiIoGetMousePos() ImVec2;
+
     /// `pub fn zguiIoGetWantCaptureMouse() bool`
     pub const getWantCaptureMouse = zguiIoGetWantCaptureMouse;
     extern fn zguiIoGetWantCaptureMouse() bool;
@@ -263,6 +271,15 @@ pub const io = struct {
 
     pub const addCharacterEvent = zguiIoAddCharacterEvent;
     extern fn zguiIoAddCharacterEvent(char: i32) void;
+
+    pub fn inputQueueCharacters() []Wchar {
+        const size = @intCast(u32, zguiIoInputQueueCharactersSize());
+        return zguiIoInputQueueCharacters()[0..size];
+    }
+    extern fn zguiIoInputQueueCharacters() [*]Wchar;
+
+    pub const inputQueueCharactersSize = zguiIoInputQueueCharactersSize;
+    extern fn zguiIoInputQueueCharactersSize() i32;
 };
 
 pub fn setClipboardText(value: [:0]const u8) void {
@@ -2131,6 +2148,9 @@ pub const InputTextCallbackData = extern struct {
 };
 
 pub const InputTextCallback = *const fn (data: *InputTextCallbackData) i32;
+
+pub const isKeyDown = zguiIsKeyDown;
+extern fn zguiIsKeyDown(Key) bool;
 //--------------------------------------------------------------------------------------------------
 const InputText = struct {
     buf: []u8,

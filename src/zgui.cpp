@@ -1174,6 +1174,18 @@ ZGUI_API const char* zguiGetClipboardText(void) {
     return ImGui::GetClipboardText();
 }
 
+ZGUI_API bool zguiIsKeyDown(ImGuiKey key) {
+  return ImGui::IsKeyDown(key);
+}
+
+ZGUI_API ImWchar* zguiIoInputQueueCharacters(void) {
+  return ImGui::GetIO().InputQueueCharacters.Data;
+}
+
+ZGUI_API int zguiIoInputQueueCharactersSize(void) {
+    return ImGui::GetIO().InputQueueCharacters.Size;
+}
+
 ZGUI_API ImFont* zguiIoAddFontFromFileWithConfig(
     const char* filename,
     float size_pixels,
@@ -1232,6 +1244,10 @@ ZGUI_API ImTextureID zguiIoGetFontsTexId(void) {
     return ImGui::GetIO().Fonts->TexID;
 }
 
+ZGUI_API ImVec2 zguiIoGetMousePos(void) {
+  return ImGui::GetIO().MousePos;
+}
+
 ZGUI_API bool zguiIoGetWantCaptureMouse(void) {
     return ImGui::GetIO().WantCaptureMouse;
 }
@@ -1240,7 +1256,7 @@ ZGUI_API bool zguiIoGetWantCaptureKeyboard(void) {
     return ImGui::GetIO().WantCaptureKeyboard;
 }
 
-ZGUI_API void zguiIoSetIniFilename(const char* filename) {
+  ZGUI_API void zguiIoSetIniFilename(const char* filename) {
     ImGui::GetIO().IniFilename = filename;
 }
 
