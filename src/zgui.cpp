@@ -1175,6 +1175,19 @@ ZGUI_API const char* zguiGetClipboardText(void) {
     return ImGui::GetClipboardText();
 }
 
+
+ZGUI_API bool zguiControlDown() {
+  return ImGui::GetIO().KeyCtrl;
+}
+
+ZGUI_API bool zguiShiftDown() {
+  return ImGui::GetIO().KeyShift;
+}
+
+ZGUI_API bool zguiAltDown() {
+  return ImGui::GetIO().KeyAlt;
+}
+
 ZGUI_API float zguiKeyDownDuration(ImGuiKey key) {
   return ImGui::GetKeyData(key)->DownDuration;
 }

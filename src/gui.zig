@@ -2152,6 +2152,15 @@ pub const InputTextCallback = *const fn (data: *InputTextCallbackData) i32;
 pub const keyDownDuration = zguiKeyDownDuration;
 extern fn zguiKeyDownDuration(Key) f32;
 
+pub const controlDown = zguiControlDown;
+extern fn zguiControlDown() bool;
+
+pub const shiftDown = zguiControlDown;
+extern fn zguiShiftDown() bool;
+
+pub const altlDown = zguiControlDown;
+extern fn zguiAltDown() bool;
+
 pub const isKeyDown = zguiIsKeyDown;
 extern fn zguiIsKeyDown(Key) bool;
 //--------------------------------------------------------------------------------------------------
