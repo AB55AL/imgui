@@ -2155,10 +2155,10 @@ extern fn zguiKeyDownDuration(Key) f32;
 pub const controlDown = zguiControlDown;
 extern fn zguiControlDown() bool;
 
-pub const shiftDown = zguiControlDown;
+pub const shiftDown = zguiShiftDown;
 extern fn zguiShiftDown() bool;
 
-pub const altDown = zguiControlDown;
+pub const altDown = zguiAltDown;
 extern fn zguiAltDown() bool;
 
 pub const isKeyDown = zguiIsKeyDown;
