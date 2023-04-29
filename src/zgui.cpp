@@ -1041,6 +1041,10 @@ ZGUI_API void zguiPushItemWidth(float item_width) {
     ImGui::PushItemWidth(item_width);
 }
 
+ZGUI_API void zguiSetItemAllowOverlap(void) {
+    ImGui::SetItemAllowOverlap();
+}
+
 ZGUI_API void zguiPopItemWidth(void) {
     ImGui::PopItemWidth();
 }

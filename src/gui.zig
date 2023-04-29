@@ -997,10 +997,12 @@ pub const popItemWidth = zguiPopItemWidth;
 pub const setNextItemWidth = zguiSetNextItemWidth;
 /// `void setItemDefaultFocus() void`
 pub const setItemDefaultFocus = zguiSetItemDefaultFocus;
+pub const setItemAllowOverlap = zguiSetItemAllowOverlap;
 extern fn zguiPushItemWidth(item_width: f32) void;
 extern fn zguiPopItemWidth() void;
 extern fn zguiSetNextItemWidth(item_width: f32) void;
 extern fn zguiSetItemDefaultFocus() void;
+extern fn zguiSetItemAllowOverlap() void;
 //--------------------------------------------------------------------------------------------------
 /// `pub fn getFont() Font`
 pub const getFont = zguiGetFont;
