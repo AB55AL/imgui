@@ -73,6 +73,10 @@ ZGUI_API void zguiEndChild(void) {
     ImGui::EndChild();
 }
 
+ZGUI_API void zguiSetItemAllowOverlap(void) {
+    ImGui::SetItemAllowOverlap();
+}
+
 ZGUI_API float zguiGetScrollX(void) {
     return ImGui::GetScrollX();
 }
